@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:restorant_food_ordering/components/food_component.dart';
+import 'package:restorant_food_ordering/pages/details_page.dart';
+import 'package:restorant_food_ordering/pages/wiater_page.dart';
 import 'package:restorant_food_ordering/provider/foods_provider.dart';
 
 import '../components/category_component.dart';
@@ -15,9 +19,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List categories = [
-    [0, 'image1', 'title'],
-    [1, 'image2', 'title'],
-    [2, 'image3', 'title']
+    [0, 'image1', 'የፆም'],
+    [1, 'image2', 'የፍስክ'],
+    [2, 'image3', 'መጠጥ'],
+    [3, 'image3', 'ኬክ'],
+    [4, 'image3', 'ትኩስ'],
   ];
 
   int selectedIndex = 0;
@@ -27,18 +33,30 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Restorant Food Ordering App',
-          style: GoogleFonts.cinzel(fontSize: 20),
+          'Food Ordering App',
+          style: GoogleFonts.cinzel(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        leading: Builder(builder: (context) {
-          return IconButton(
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
               icon: Icon(
                 Icons.menu_outlined,
-              ));
-        }),
+              ),
+            );
+          },
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => WaiterPage()));
+            },
+            icon: Icon(Icons.person),
+          ),
+        ],
       ),
       drawer: Drawer(),
       body: Consumer<FoodProvider>(
@@ -94,9 +112,19 @@ class _HomePageState extends State<HomePage> {
               mainAxisSpacing: 20),
           itemBuilder: (context, index) {
             return FoodComponent(
-                image: value.getFoods[0][index].image,
-                title: value.getFoods[0][index].title,
-                price: value.getFoods[0][index].price);
+              image: value.getFoods[0][index].image,
+              title: value.getFoods[0][index].title,
+              price: value.getFoods[0][index].price,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    image: value.getFoods[0][index].image,
+                    price: value.getFoods[0][index].price,
+                    title: value.getFoods[0][index].title,
+                  ),
+                ));
+              },
+            );
           }),
     );
   }
@@ -112,9 +140,19 @@ class _HomePageState extends State<HomePage> {
               mainAxisSpacing: 20),
           itemBuilder: (context, index) {
             return FoodComponent(
-                image: value.getFoods[1][index].image,
-                title: value.getFoods[1][index].title,
-                price: value.getFoods[1][index].price);
+              image: value.getFoods[1][index].image,
+              title: value.getFoods[1][index].title,
+              price: value.getFoods[1][index].price,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    image: value.getFoods[1][index].image,
+                    price: value.getFoods[1][index].price,
+                    title: value.getFoods[1][index].title,
+                  ),
+                ));
+              },
+            );
           }),
     );
   }
@@ -130,9 +168,19 @@ class _HomePageState extends State<HomePage> {
               mainAxisSpacing: 20),
           itemBuilder: (context, index) {
             return FoodComponent(
-                image: value.getFoods[2][index].image,
-                title: value.getFoods[2][index].title,
-                price: value.getFoods[2][index].price);
+              image: value.getFoods[2][index].image,
+              title: value.getFoods[2][index].title,
+              price: value.getFoods[2][index].price,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    image: value.getFoods[2][index].image,
+                    price: value.getFoods[2][index].price,
+                    title: value.getFoods[2][index].title,
+                  ),
+                ));
+              },
+            );
           }),
     );
   }

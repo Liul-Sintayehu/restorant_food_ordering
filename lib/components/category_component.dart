@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class CategoryComponent extends StatelessWidget {
@@ -15,7 +17,7 @@ class CategoryComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return InkWell(
+    return GestureDetector(
       onTap: onPressed,
       child: Container(
         height: size.height * 0.1,
