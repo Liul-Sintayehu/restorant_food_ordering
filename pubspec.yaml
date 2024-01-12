@@ -67,6 +67,8 @@ flutter:
     - foods/yetsom/
     - foods/yefsg/
     - foods/metet/
+    - foods/tkus/
+    - foods/cake/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

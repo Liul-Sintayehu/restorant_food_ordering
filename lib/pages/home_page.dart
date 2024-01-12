@@ -103,8 +103,8 @@ class _HomePageState extends State<HomePage> {
                         : (selectedIndex == 2)
                             ? metetMethod(value)
                             : (selectedIndex == 3)
-                                ? metetMethod(value)
-                                : yefskMethod(value)
+                                ? cakeMethod(value)
+                                : tkusMethod(value)
               ],
             ),
           );
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
   Expanded metetMethod(FoodProvider value) {
     return Expanded(
       child: GridView.builder(
-          itemCount: value.getFoods[0].length,
+          itemCount: value.getFoods[2].length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 1 / 1.2,
@@ -189,6 +189,62 @@ class _HomePageState extends State<HomePage> {
                     image: value.getFoods[2][index].image,
                     price: value.getFoods[2][index].price,
                     title: value.getFoods[2][index].title,
+                  ),
+                ));
+              },
+            );
+          }),
+    );
+  }
+
+  Expanded cakeMethod(FoodProvider value) {
+    return Expanded(
+      child: GridView.builder(
+          itemCount: value.getFoods[3].length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1 / 1.2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          itemBuilder: (context, index) {
+            return FoodComponent(
+              image: value.getFoods[3][index].image,
+              title: value.getFoods[3][index].title,
+              price: value.getFoods[3][index].price,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    image: value.getFoods[3][index].image,
+                    price: value.getFoods[3][index].price,
+                    title: value.getFoods[3][index].title,
+                  ),
+                ));
+              },
+            );
+          }),
+    );
+  }
+
+  Expanded tkusMethod(FoodProvider value) {
+    return Expanded(
+      child: GridView.builder(
+          itemCount: value.getFoods[4].length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1 / 1.2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
+          itemBuilder: (context, index) {
+            return FoodComponent(
+              image: value.getFoods[4][index].image,
+              title: value.getFoods[4][index].title,
+              price: value.getFoods[4][index].price,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    image: value.getFoods[4][index].image,
+                    price: value.getFoods[4][index].price,
+                    title: value.getFoods[4][index].title,
                   ),
                 ));
               },

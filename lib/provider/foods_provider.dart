@@ -21,16 +21,16 @@ class FoodProvider extends ChangeNotifier {
       Food('foods/metet/draft.jpg', '35', 'ድራፍት'),
     ],
     [
-      Food('foods/metet/bira.jpg', '50', 'ቢራ'),
-      Food('foods/metet/wine.jpg', '120', 'ወይን'),
-      Food('foods/metet/wski.jpg', '1750', 'ውስኪ'),
-      Food('foods/metet/draft.jpg', '35', 'ድራፍት'),
+      Food('foods/cake/chocolate.jpg', '200', 'ቸኮሌት'),
+      Food('foods/cake/soft.jpg', '150', 'ሶፍት'),
+      Food('foods/cake/torta.jpg', '1000', 'ቶርታ'),
+      Food('foods/cake/birthday.jpg', '750', 'የልደት'),
     ],
     [
-      Food('foods/metet/bira.jpg', '50', 'ቢራ'),
-      Food('foods/metet/wine.jpg', '120', 'ወይን'),
-      Food('foods/metet/wski.jpg', '1750', 'ውስኪ'),
-      Food('foods/metet/draft.jpg', '35', 'ድራፍት'),
+      Food('foods/tkus/buna.jpg', '50', 'ቡና'),
+      Food('foods/tkus/shay.jpg', '40', 'ሻይ'),
+      Food('foods/tkus/wetet.jpg', '60', 'ወተት'),
+      Food('foods/tkus/makiato.jpg', '65', 'ማኪያቶ'),
     ],
   ];
 
