@@ -20,8 +20,8 @@ class CategoryComponent extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: size.height * 0.1,
-        width: size.height * 0.1,
+        height: size.height * 0.12,
+        width: size.height * 0.12,
         padding: EdgeInsets.all(16),
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(

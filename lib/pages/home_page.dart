@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     [2, 'image3', 'መጠጥ'],
     [3, 'image3', 'ኬክ'],
     [4, 'image3', 'ትኩስ'],
-    [5, 'image3', 'ትኩስs'],
   ];
 
   int selectedIndex = 0;
@@ -101,7 +100,11 @@ class _HomePageState extends State<HomePage> {
                     ? yetsomMethod(value)
                     : (selectedIndex == 1)
                         ? yefskMethod(value)
-                        : metetMethod(value)
+                        : (selectedIndex == 2)
+                            ? metetMethod(value)
+                            : (selectedIndex == 3)
+                                ? metetMethod(value)
+                                : yefskMethod(value)
               ],
             ),
           );
