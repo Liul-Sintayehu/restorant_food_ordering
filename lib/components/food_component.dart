@@ -22,14 +22,14 @@ class FoodComponent extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.15,
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-                blurRadius: 1,
-                spreadRadius: 0.5,
-                offset: Offset(1, 2),
-                color: const Color.fromARGB(255, 141, 135, 135)),
+              blurRadius: 1,
+              spreadRadius: 0.5,
+              offset: Offset(1, 2),
+              color: const Color.fromARGB(255, 141, 135, 135),
+            ),
           ]),
       child: Column(
         children: [

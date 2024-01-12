@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     [2, 'image3', 'መጠጥ'],
     [3, 'image3', 'ኬክ'],
     [4, 'image3', 'ትኩስ'],
+    [5, 'image3', 'ትኩስs'],
   ];
 
   int selectedIndex = 0;
@@ -72,21 +73,29 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.2,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categories.length,
-                      itemBuilder: (context, index) {
-                        return CategoryComponent(
-                          isSelected: selectedIndex == index,
-                          image: categories[index][1],
-                          title: categories[index][2],
-                          onPressed: () {
-                            setState(() {
-                              selectedIndex = categories[index][0];
-                            });
-                          },
-                        );
-                      }),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 245, 242, 242),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categories.length,
+                          itemBuilder: (context, index) {
+                            return CategoryComponent(
+                              isSelected: selectedIndex == index,
+                              image: categories[index][1],
+                              title: categories[index][2],
+                              onPressed: () {
+                                setState(() {
+                                  selectedIndex = categories[index][0];
+                                });
+                              },
+                            );
+                          }),
+                    ),
+                  ),
                 ),
                 (selectedIndex == 0)
                     ? yetsomMethod(value)

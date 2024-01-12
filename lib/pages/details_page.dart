@@ -1,5 +1,10 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 
 class DetailsPage extends StatefulWidget {
   final String image;
@@ -18,6 +23,23 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   int order = 1;
+  bool isLoading = true;
+  var _table = TextEditingController();
+
+  sendOrder() async {
+    final uri =
+        Uri.parse('https://restorant-backend-i0ix.onrender.com/addorder');
+    var response = await http.post(
+      uri,
+      body: {
+        "title": widget.title,
+        "price": widget.price,
+        "amount": order.toString(),
+        "table": _table.text
+      },
+    );
+    print(response);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +89,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           width: MediaQuery.of(context).size.width * 0.6,
                           height: 30,
                           child: TextField(
+                            controller: _table,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
@@ -121,20 +144,76 @@ class _DetailsPageState extends State<DetailsPage> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Order recieved!!'),
+                          title: Text('Your order'),
                           content: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text('Number of order : $order '),
                               Text('Name of order : ${widget.title}'),
-                              Text('Price of order : ${widget.price}')
+                              Text('Price of order : ${widget.price}'),
+                              Text('Table number : ${_table.text}'),
                             ],
                           ),
                           actions: [
                             TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
+                                },
+                                child: Text('cancel')),
+                            TextButton(
+                                onPressed: () async {
+                                  // await Future.delayed(
+                                  //   Duration(seconds: 3),
+                                  // );
+                                  sendOrder();
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          content: Row(
+                                            children: [
+                                              FutureBuilder(
+                                                future: myFuture(context),
+                                                builder: (context, value) {
+                                                  return Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      isLoading
+                                                          ? Row(
+                                                              children: [
+                                                                CircularProgressIndicator(),
+                                                                SizedBox(
+                                                                    width: 25),
+                                                                Text(
+                                                                    'Sending order...')
+                                                              ],
+                                                            )
+                                                          : Text('')
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                  Navigator.of(context).pop();
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text('Order recived'),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('Ok'))
+                                          ],
+                                        );
+                                      });
                                 },
                                 child: Text('Ok'))
                           ],
@@ -154,3 +233,32 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 }
+
+Future myFuture(context) async {
+  await Future.delayed(Duration(seconds: 2), () {
+    Navigator.of(context).pop();
+  });
+}
+
+//  await Future.delayed(
+//                                     Duration(seconds: 2),
+//                                     () {
+//                                       showDialog(
+//                                           context: context,
+//                                           builder: (context) {
+//                                             return AlertDialog(
+//                                               content:
+//                                                   Text('Order successful!!!'),
+//                                               actions: [
+//                                                 TextButton(
+//                                                     onPressed: () {
+//                                                       Navigator.of(context)
+//                                                           .pop();
+//                                                     },
+//                                                     child: Text('ok')),
+//                                               ],
+//                                             );
+//                                           });
+//                                       Navigator.of(context).pop();
+//                                     },
+//                                   );
